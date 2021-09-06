@@ -10,6 +10,8 @@ import { SliderComponent } from './shared/slider/slider.component';
 import { DetailsComponent } from './components/details/details.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { MainPageComponent } from './components/main-page/main-page.component';
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    CKEditorModule,
+    CarouselModule
   ]
 })
 export class HomeModule { }
