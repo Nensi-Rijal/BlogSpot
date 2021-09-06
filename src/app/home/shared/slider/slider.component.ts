@@ -31,10 +31,12 @@ export class SliderComponent implements OnInit {
   constructor(private blogProxy: BlogService) { }
 
   ngOnInit(): void {
+    this.getCategory()
   }
   getCategory(){
     this.blogProxy.getBlog().subscribe((data: any) => {
       this.blogs = data;
+      console.log(this.blogs)
     })
   }
 }
