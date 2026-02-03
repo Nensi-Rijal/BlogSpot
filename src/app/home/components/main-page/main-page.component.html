@@ -1,7 +1,72 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <app-slider></app-slider>
+<!-- Hero Slider Section -->
+<section class="hero-section">
+  <div class="container-fluid p-0">
+    <app-slider></app-slider>
+  </div>
+</section>
+
+<!-- Featured Blogs Section -->
+<section class="featured-section py-5">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <h2 class="section-title">Featured Articles</h2>
+        <p class="section-subtitle">Discover our latest blog posts and stories</p>
+      </div>
+    </div>
+    
+    <div class="row" *ngIf="blogs && blogs.length > 0">
+      <div class="col-lg-4 col-md-6 mb-4" *ngFor="let blog of blogs">
+        <div class="blog-card">
+          <div class="blog-card-image">
+            <img [src]="blog.image" [alt]="blog.title" [title]="blog.title" class="img-fluid">
+            <div class="blog-card-overlay">
+              <span class="badge badge-primary">{{blog.category}}</span>
+            </div>
+          </div>
+          <div class="blog-card-content">
+            <h3 class="blog-card-title">{{blog.title}}</h3>
+            <p class="blog-card-description">{{blog.description | slice:0:120}}...</p>
+            <div class="blog-card-footer">
+              <div class="blog-meta">
+                <span class="blog-date"><i class="far fa-calendar-alt"></i> {{blog.date | date:'MMM d, yyyy'}}</span>
+                <span class="blog-author"><i class="far fa-user"></i> {{blog.author}}</span>
+              </div>
+              <button class="btn btn-read-more" [routerLink]="['/details', blog.id]">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Loading State -->
+    <div class="row" *ngIf="!blogs || blogs.length === 0">
+      <div class="col-12 text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section py-5 bg-light">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <h2 class="section-title">Explore Categories</h2>
+        <p class="section-subtitle">Browse articles by topic</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-6 mb-4" *ngFor="let category of categories">
+        <div class="category-card">
+          <i class="{{category.icon}} category-icon"></i>
+          <h4 class="category-name">{{category.name}}</h4>
+          <p class="category-count">{{category.count}} Articles</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

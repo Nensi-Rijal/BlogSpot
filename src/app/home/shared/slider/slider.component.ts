@@ -36,7 +36,6 @@ export class SliderComponent implements OnInit {
   getCategory(){
     this.blogProxy.getBlog().subscribe((data: any) => {
       this.blogs = data;
-      console.log(this.blogs)
     })
   }
 }
